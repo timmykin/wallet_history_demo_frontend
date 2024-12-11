@@ -1,0 +1,126 @@
+$coinbase-blue: #0052fe;
+$paymaker-purple: #9747FF;
+$light-gray: #d0ddf2;
+$medium-gray: #a2a2a2;
+
+.main {
+  padding-top: 70px;
+  min-width: 90%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: auto;
+
+  h1 {
+    color: $coinbase-blue;
+  }
+
+  .header {
+    margin-top: 3vh;
+    margin-bottom: 10px;
+    width: 90%;
+    max-width: 90%;
+  }
+
+  .input__address {
+    width: 60%;
+    max-width: 400px;
+    padding: 10px;
+  }
+
+  .input__limit {
+    max-width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .line {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .btn__submit {
+    background-color: #EEF0F3;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border: 1px solid $medium-gray;
+  }
+
+  .btn__submit:hover {
+    background-color: #d0ddf2;
+    color: #333;
+  }
+
+  .networkSelect {
+    width: 30%;
+    max-width: 150px;
+    padding: 10px;
+    margin-left: 20px;
+  }
+
+  .tableCount {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .tableContainer {
+    max-width: 95%;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow: auto;
+  }
+
+  .table {
+    font-size: 14px;
+    border-collapse: collapse;
+
+    tbody {
+      overflow-x: scroll;
+      height: 300px;
+    }
+
+    th {
+      border: 1px solid gray;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    tr:hover {
+      background-color: $light-gray;
+    }
+
+    td {
+      max-width: 200px;
+      border: 1px solid gray;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .clickable {
+      cursor: pointer;
+    }
+  }
+
+
+  .loading {
+    max-height: 5em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+}
