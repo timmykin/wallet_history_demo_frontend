@@ -33,6 +33,11 @@ export default function GetHistory(): React.JSX.Element {
     try {
       e.preventDefault();
 
+      if (!import.meta.env.VITE_APP_BACKEND_URL) {
+        toast.error("Something went wrong!")
+        console.log('VITE_APP_BACKEND_URL variable is missing!');
+        return;
+      }
       fetchHistory();
     } catch (err) {
         toast.error("Something went wrong!")
