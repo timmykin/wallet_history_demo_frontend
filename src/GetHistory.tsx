@@ -22,13 +22,8 @@ export default function GetHistory(): React.JSX.Element {
         limit,
         walletAddress: wAddress,
         network,
-      })
-      .then((res) => res.data)
-      .catch((e) => {
-        console.log('Axios error:', e);
-      }),
+      }).then((res) => res.data),
     onError: (error: AxiosError) => {
-      console.log('onError:', error);
       const errorMessage = (error.response?.data as string) || 'An error happened while fetching';
       toast.error(errorMessage)
     }
@@ -38,11 +33,6 @@ export default function GetHistory(): React.JSX.Element {
     try {
       e.preventDefault();
 
-      if (!import.meta.env.VITE_APP_BACKEND_URL) {
-        toast.error("Something went wrong!")
-        console.log('VITE_APP_BACKEND_URL variable is missing!');
-        return;
-      }
       fetchHistory();
     } catch (err) {
         toast.error("Something went wrong!")
@@ -110,39 +100,39 @@ export default function GetHistory(): React.JSX.Element {
           </thead>
           <tbody>
             {data.map((item: HistoryResponseItem, i: number) => {
-              const amount = Number(item?.model?.content?.value) / 1000000000000000000;
-              const transferType = item.model?.content?.token_transfers?.[0]?.token_transfer_type || '';
+              const amount = Number(item.model.content.token_transfers[0].value) / 1000000;
+              const transferType = item.model.content.token_transfers[0].token_transfer_type;
               return (
                 <tr key={i}>
                   <td>{i+1}</td>
                   <td className={styles.clickable}>
-                      <a target="_blank" href={item.model?.transaction_link}>
-                        {reduceStr(item.model?.transaction_hash)}
+                      <a target="_blank" href={item.model.transaction_link}>
+                        {reduceStr(item.model.transaction_hash)}
                       </a>
                   </td>
                   <td 
                     className={styles.clickable} 
-                    onClick={() => copyToClipboard(item.model?.from_address_id)}
+                    onClick={() => copyToClipboard(item.model.from_address_id)}
                   >
-                    {reduceStr(item.model?.from_address_id)}
+                    {reduceStr(item.model.from_address_id)}
                   </td>
                   <td
                     className={styles.clickable} 
-                    onClick={() => copyToClipboard(item.model?.to_address_id)}
+                    onClick={() => copyToClipboard(item.model.to_address_id)}
                   >
-                    {reduceStr(item.model?.to_address_id)}
+                    {reduceStr(item.model.to_address_id)}
                   </td>
-                  <td>{item.model?.network_id}</td>
+                  <td>{item.model.network_id}</td>
                   <td>{amount}</td>
                   <td>{transferType}</td>
                   <td
                     className={styles.clickable} 
-                    onClick={() => copyToClipboard(item.model?.block_hash)}
+                    onClick={() => copyToClipboard(item.model.block_hash)}
                   >
-                    {reduceStr(item.model?.block_hash)}
+                    {reduceStr(item.model.block_hash)}
                   </td>
-                  <td>{item.model?.block_height}</td>
-                  <td>{item.model?.content?.block_timestamp}</td>
+                  <td>{item.model.block_height}</td>
+                  <td>{item.model.content.block_timestamp}</td>
                 </tr>
               );
             })}
